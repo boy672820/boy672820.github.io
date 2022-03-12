@@ -5,7 +5,6 @@ paginate_path: "page:num"
 exclude: ["README.md"] # files to exclude
 highlighter: rouge
 markdown: kramdown
-locale: ko
 disqus: ""
 google_analytics: ""
 title: 선주의 기술 블로그
@@ -36,14 +35,3 @@ BASE_PATH:
 
 plugins:
   - jekyll-paginate
-
-date:
-  en: &DEFAULT_EN
-    date_format: '%B %d, %Y'
-  en-US:
-    <<: *DEFAULT_EN
-
-  ko: &DEFAULT_KO
-    date_format: '%Y년 %m월 %d일'
-  ko-KR:
-    <<: *DEFAULT_KO
