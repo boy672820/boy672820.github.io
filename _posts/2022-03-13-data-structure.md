@@ -38,7 +38,7 @@ description: 자료구주와 알고리즘 개요
 
 **알고리즘 속도의 표현법**으로 예를 들어, 선형 검색(Linear Search)의 시간복잡도를 표현하면 O(N)이 된다.
 
-![Untitled](https://boy672820.github.io/assets/images/2022-03-13-data-structure/Untitled-g)
+![Untitled](https://boy672820.github.io/assets/images/2022-03-13-data-structure/Untitled.png)
 
 이렇게 쓰는 이유는 빠르고 이해하기 쉽기 때문이다.
 
