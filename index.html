@@ -5,7 +5,7 @@ tagline:
 
 {% for post in paginator.posts %}
 
-<article class="home">
+<article class="home post-article">
 
   <span class="post-date">
     {% assign d = post.date | date: "%d" | plus:'0' %}
@@ -19,11 +19,11 @@ tagline:
     {{ post.date | date: "%Y" }}
   </span>
 
-  <h2>
+  <h2 class="post-title">
     <a href="{{ site.BASE_PATH }}{{ post.url }}">{{ post.title }}</a>
   </h2>
 
-  <div>
+  <div class="post-description">
     {% if post.fullview %}
     {{ post.content }}
     {% else %}
