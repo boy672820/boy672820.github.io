@@ -1,3 +1,11 @@
+---
+layout: post
+title: 표준 입출력(Standard Stream)
+categories: [programming]
+tags: [unix]
+description: 표준 입출력이란, Standard Stream
+---
+
 # 표준 입출력, Standard Stream(표준 스트림)
 
 표준 입출력을 표준 스트림이라고 부른다.
