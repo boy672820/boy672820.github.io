@@ -3,28 +3,26 @@
 paginate: 10 # pagination based on number of posts
 paginate_path: "page:num"
 exclude: ["README.md"] # files to exclude
-highlighter: pygments
+highlighter: rouge
 markdown: kramdown
-disqus: dbyll
-google_analytics: dbyll
+disqus: ""
+google_analytics: ""
+title: 선주의 기술 블로그
 
 defaults:
   -
     scope:
       path: "" # empty string for all files
     values:
-      title: dbyll
+      title: 선주의 기술 블로그
 
-description: Stylish Jekyll Theme
+description: 경험을 공유하는 기술 블로그
 author:
-  name: dbyll
-  email: dbyll@ismaildemirbilek.com
-  github: dbtek
-  twitter: dbtek
-  pinterest: asd123
-  linkedin: asd123
-  bio: Your stylish, minimalist theme!
-  email_md5: 726351295ec82e145928582f595aa3aa
+  name: 이선주
+  email: boy672820@gmail.com
+  github: boy672820
+  bio: Blockchain, BE, FE, DevOps | Geniesoft
+  email_md5: c55d93bfcd3f1a41b829a7fecb079792
 
 rss_path: feed.xml
 categories_path: categories.html
@@ -35,5 +33,5 @@ tags_path: tags.html
 
 BASE_PATH:
 
-gems:
+plugins:
   - jekyll-paginate
