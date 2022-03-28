@@ -2,7 +2,7 @@
 
  function init() {
     /* Sidebar height set */
-    $sidebarStyles = $('.sidebar').attr('style')
+    $sidebarStyles = $('.sidebar').attr('style') || "";
     $sidebarStyles += ' min-height: ' + $(document).height() + 'px;';
     $('.sidebar').attr('style', $sidebarStyles);
 
@@ -19,7 +19,7 @@
      */
     function activateTab() {
       if(['/tags.html', '/categories.html'].indexOf(window.location.pathname) > -1) {
-        var hash = window.location.hash;
+        var hash = decodeURIComponent(window.location.hash);
         if(hash)
           $('.tab-pane').length && $('a[href="' + hash + '"]').tab('show');
         else
