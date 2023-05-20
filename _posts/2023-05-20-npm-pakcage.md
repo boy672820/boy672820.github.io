@@ -1,3 +1,11 @@
+---
+layout: post
+title: Github으로 NPM 패키지 배포하기
+categories: [github, npm, package]
+tags: [github-package, github]
+description: Github Registry로 NPM 패키지 배포하기
+---
+
 작업 중 여러 Repository에서 같은 코드를 사용하게 되었다. 예를 들면 아래와 같은 코드이다.
 ```typescript
 /**
