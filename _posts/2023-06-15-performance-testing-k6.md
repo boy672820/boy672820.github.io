@@ -363,3 +363,5 @@ export const options = {
 running (1m30.0s), 000/100 VUs, 100 complete and 1 interrupted iterations
 constant_request_rate ✓ [======================================] 001/100 VUs  1m0s  1.67 iters/s
 ```
+
+해당 코드들은 [Github K6 Example](https://github.com/boy672820/k6-example)에서 확인할 수 있다.
