@@ -53,7 +53,7 @@ description: CQRS 패턴과 Clean Architecture 도입 사례에 대하여
 
 ## 1.3. 진이의 하루
 
-![jin|300](https://boy672820.github.io/assets/images/2023-08-06-cqrs-clean-architecture/Pasted_image_20230729230359.png)
+![jin300](https://boy672820.github.io/assets/images/2023-08-06-cqrs-clean-architecture/Pasted_image_20230729230359.png)
 사회적으로 고립된 사람들의 고독사를 방지하기 위한 서비스
 
 - 관리 대상자 앱을 통한 모니터링
@@ -127,7 +127,7 @@ description: CQRS 패턴과 Clean Architecture 도입 사례에 대하여
 - 생성된 토큰이 맞는지 인증 절차 진행
 - 저장된 사용자들 중에서 해당 이메일을 사용하고 있는지 확인
 
-![a|300][https://boy672820.github.io/assets/images//Pasted_image_20230729184243.png]
+![a300][https://boy672820.github.io/assets/images//Pasted_image_20230729184243.png]
 
 >****인증 토큰**은 보안을 위해 암호화된 문자를 말한다.
 >비밀번호를 통해 생성되며, 해당 비밀번호로 복호화한 후 인증을 진행한다.
@@ -174,7 +174,7 @@ description: CQRS 패턴과 Clean Architecture 도입 사례에 대하여
 
 만약, 유저 회원가입 기능의 이메일이 전화번호로 변경된다면 어떻게 될까? 아마 비즈니스 로직을 제외한 거의 대부분을 변경해야 할 것이다.
 
-![change_unique|500](https://boy672820.github.io/assets/images/Pasted_image_20230804014315.png)
+![change_unique500](https://boy672820.github.io/assets/images/Pasted_image_20230804014315.png)
 
 ## 엔티티(Entity) 변경에 따른 악영향
 
