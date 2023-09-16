@@ -34,39 +34,39 @@ EC2 환경에 도커를 이용한 컨테이너 배포를 진행하면서 많은 
 name: Build your app
 
 env:
-	DOCKER_IMAGE: ghcr.io/${{ github.repository }}
-	DOCKER_CONTAINER: lifesupport-backend
+  DOCKER_IMAGE: ghcr.io/${{ github.repository }}
+  DOCKER_CONTAINER: lifesupport-backend
 
 on:
-	push:
-		branches: ['main']
+  push:
+    branches: ['main']
 
 jobs:
-	build:
-		runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-latest
 
-		steps:
-			- name: Checkout source code
-			  uses: actions/checkout@v3
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
 
-			- name: Setup docker build
-			  id: buildx
-			  uses: docker/setup-buildx-action@v2
+      - name: Setup docker build
+        id: buildx
+        uses: docker/setup-buildx-action@v2
 
-			- name: Login to ghcr
-			  uses: docker/login-action@v2
-			  with:
-			  registry: ghcr.io
-			  username: ${{ github.actor }}
-			  password: ${{ secrets.GHCR_TOKEN }}
+      - name: Login to ghcr
+        uses: docker/login-action@v2
+        with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GHCR_TOKEN }}
 
-			- name: Build and push
-			  id: docker_build
-			  uses: docker/build-push-action@v3
-			  with:
-			  push: true
-			  tags: ${{ env.DOCKER_IMAGE }}:latest
-			  file: ./docker/production/Dockerfile
+      - name: Build and push
+        id: docker_build
+        uses: docker/build-push-action@v3
+        with:
+        push: true
+        tags: ${{ env.DOCKER_IMAGE }}:latest
+        file: ./docker/production/Dockerfile
 ```
 
 `.yml` 파일은 저장소 루트 디렉토리의 `.github/workflows/{액션파일명}.yml` 형태로 저장된다. 이제부터 요소 하나하나 알아 가보자
@@ -100,76 +100,76 @@ Github Actions가 실행될 조건으로 `main` 브랜치에 push 작업이 발�
 name: Build your app
 
 env:
-	DOCKER_IMAGE: ghcr.io/${{ github.repository }}
-	DOCKER_CONTAINER: nodeserver
+  DOCKER_IMAGE: ghcr.io/${{ github.repository }}
+  DOCKER_CONTAINER: nodeserver
 
 on:
-	push:
-		branches: ['main']
+  push:
+    branches: ['main']
 
 jobs:
-	build:
-		runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-latest
 
-		steps:
-			- name: Checkout source code
-			  uses: actions/checkout@v3
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
 
-			- name: Setup docker build
-			  id: buildx
-			  uses: docker/setup-buildx-action@v2
+      - name: Setup docker build
+        id: buildx
+        uses: docker/setup-buildx-action@v2
 
-			- name: Login to ghcr
-			  uses: docker/login-action@v2
-			  with:
-			  registry: ghcr.io
-			  username: ${{ github.actor }}
-			  password: ${{ secrets.GHCR_TOKEN }}
+      - name: Login to ghcr
+        uses: docker/login-action@v2
+        with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GHCR_TOKEN }}
 
-			- name: Build and push
-			  id: docker_build
-			  uses: docker/build-push-action@v3
-			  with:
-			  push: true
-			  tags: ${{ env.DOCKER_IMAGE }}:latest
-			  file: ./docker/production/Dockerfile
+      - name: Build and push
+        id: docker_build
+        uses: docker/build-push-action@v3
+        with:
+        push: true
+        tags: ${{ env.DOCKER_IMAGE }}:latest
+        file: ./docker/production/Dockerfile
 
-	deploy:
-		needs: build
-		runs-on: [self-hosted, Linux, X64]
+  deploy:
+    needs: build
+    runs-on: [self-hosted, Linux, X64]
 
-	steps:
-	- name: Login to ghcr
-	  uses: docker/login-action@v2
-	  with:
-	    registry: ghcr.io
-		username: ${{ github.repository_owner }}
-		password: ${{ secrets.GHCR_TOKEN }}
-	
-	- name: Run docker
-	  run: |
-		docker stop ${{ env.DOCKER_CONTAINER }} && docker rm ${{ env.DOCKER_CONTAINER }} && docker rmi ${{ env.DOCKER_IMAGE }}:latest
-		docker run -dp 3000:3000 --network lifesupport-network --name ${{ env.DOCKER_CONTAINER }} --restart always ${{ env.DOCKER_IMAGE }}:latest
+  steps:
+  - name: Login to ghcr
+    uses: docker/login-action@v2
+    with:
+      registry: ghcr.io
+    username: ${{ github.repository_owner }}
+    password: ${{ secrets.GHCR_TOKEN }}
+  
+  - name: Run docker
+    run: |
+    docker stop ${{ env.DOCKER_CONTAINER }} && docker rm ${{ env.DOCKER_CONTAINER }} && docker rmi ${{ env.DOCKER_IMAGE }}:latest
+    docker run -dp 3000:3000 --network lifesupport-network --name ${{ env.DOCKER_CONTAINER }} --restart always ${{ env.DOCKER_IMAGE }}:latest
 
-	notification:
-		needs: deploy
-		permissions:
-			contents: read
-			actions: read
-		runs-on: ubuntu-latest
-	
-		steps:
-			- name: Action Slack
-			  uses: 8398a7/action-slack@v3
-			  with:
-				status: ${{ job.status }}
-				author_name: boy672820
-				fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
-	
-				if_mention: failure,cancelled
-			env:
-				SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-			if: always()
+  notification:
+    needs: deploy
+    permissions:
+      contents: read
+      actions: read
+    runs-on: ubuntu-latest
+  
+    steps:
+      - name: Action Slack
+        uses: 8398a7/action-slack@v3
+        with:
+        status: ${{ job.status }}
+        author_name: boy672820
+        fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
+  
+        if_mention: failure,cancelled
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      if: always()
 ```
 
 
